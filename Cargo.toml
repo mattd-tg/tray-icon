@@ -23,11 +23,17 @@ libxdo = ["muda/libxdo"]
 serde = ["muda/serde", "dep:serde"]
 common-controls-v6 = ["muda/common-controls-v6"]
 gtk = ["muda/gtk", "dep:libappindicator"]
-# The alternative Linux backend to `gtk`, not an addition to it. Enable exactly
-# one: `gtk` is libappindicator, this is StatusNotifierItem via ksni. Upstream
-# 0.24 made libappindicator optional behind `gtk`, which is the gating this patch
-# used to hand-roll, so the two now sit side by side in one feature graph.
-linux-ksni = ["dep:ksni", "dep:arc-swap", "muda/linux-ksni"]
+# The alternative Linux tray backend to `gtk`, not an addition to it: `gtk` is
+# libappindicator, this is StatusNotifierItem via ksni. Enable exactly one.
+#
+# Upstream 0.24 made libappindicator optional behind `gtk`, which is the gating
+# this patch used to hand-roll, so the two backends now sit side by side in one
+# feature graph instead of the fork having to blank out `default`.
+#
+# `muda/gtk` is in both because it is the menu, not the tray — a ksni tray still
+# drives a GTK-backed muda menu, and muda is pulled with `default-features = false`,
+# so nothing else turns it on once `gtk` is off.
+linux-ksni = ["dep:ksni", "dep:arc-swap", "muda/linux-ksni", "muda/gtk"]
 
 [dependencies]
 muda = { version = "0.19.1", default-features = false }
