@@ -21,7 +21,7 @@ include = [
 default = []
 serde = ["muda/serde", "dep:serde"]
 common-controls-v6 = ["muda/common-controls-v6"]
-linux-ksni = ["dep:ksni", "dep:arc-swap", "muda/linux-ksni"]
+linux-ksni = ["dep:ksni", "dep:arc-swap", "muda/linux-ksni", "muda/gtk"]
 
 [dependencies]
 muda = { version = "0.19.1", default-features = false, features = ["gtk"] }
