@@ -14,7 +14,7 @@ include = ["README.md", "src/**/*.rs", "Cargo.toml", "LICENSE-APACHE", "LICENSE-
 default = []
 serde = ["muda/serde", "dep:serde"]
 common-controls-v6 = ["muda/common-controls-v6"]
-linux-ksni = ["dep:ksni", "dep:arc-swap", "muda/linux-ksni"]
+linux-ksni = ["dep:ksni", "dep:arc-swap", "muda/linux-ksni", "muda/gtk"]
 
 [dependencies]
 muda = { version = "0.17", default-features = false }
@@ -93,4 +93,4 @@ image = { version = "0.25", default-features = false, features = ["png"] }
 serde_json = "1"
 
 [patch.crates-io]
-muda = { git = "https://github.com/dfaust/muda", branch = "ksni" }
+muda = { path = "/home/mrrobot/repos/ksni-upgrade-test/muda" }
