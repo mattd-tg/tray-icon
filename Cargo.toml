@@ -18,10 +18,10 @@ include = [
 ]
 
 [features]
-default = ["libxdo"]
-libxdo = ["muda/libxdo"]
+default = []
 serde = ["muda/serde", "dep:serde"]
 common-controls-v6 = ["muda/common-controls-v6"]
+linux-ksni = ["dep:ksni", "dep:arc-swap", "muda/linux-ksni"]
 
 [dependencies]
 muda = { version = "0.19.1", default-features = false, features = ["gtk"] }
@@ -42,6 +42,8 @@ features = [
 
 [target."cfg(any(target_os = \"linux\", target_os = \"dragonfly\", target_os = \"freebsd\", target_os = \"netbsd\", target_os = \"openbsd\"))".dependencies]
 libappindicator = "0.9"
+arc-swap = { version = "1.7.1", optional = true }
+ksni = { version = "0.2.2", optional = true }
 dirs = "6"
 
 [target."cfg(any(target_os = \"linux\", target_os = \"dragonfly\", target_os = \"freebsd\", target_os = \"netbsd\", target_os = \"openbsd\"))".dev-dependencies]
