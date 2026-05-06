@@ -11,13 +11,13 @@ rust-version = "1.71"
 include = ["README.md", "src/**/*.rs", "Cargo.toml", "LICENSE-APACHE", "LICENSE-MIT", "LICENSE.spdx"]
 
 [features]
-default = ["libxdo"]
-libxdo = ["muda/libxdo"]
+default = []
 serde = ["muda/serde", "dep:serde"]
 common-controls-v6 = ["muda/common-controls-v6"]
+linux-ksni = ["dep:ksni", "dep:arc-swap", "muda/linux-ksni"]
 
 [dependencies]
-muda = { version = "0.17", default-features = false, features = ["gtk"] }
+muda = { version = "0.17", default-features = false }
 crossbeam-channel = "0.5"
 once_cell = "1"
 thiserror = "2"
@@ -35,6 +35,8 @@ features = [
 
 [target."cfg(target_os = \"linux\")".dependencies]
 libappindicator = "0.9"
+arc-swap = { version = "1.7.1", optional = true }
+ksni = { version = "0.2.2", optional = true }
 dirs = "6"
 
 [target."cfg(target_os = \"linux\")".dev-dependencies]
@@ -89,3 +91,6 @@ tao = "0.34"
 eframe = "0.31"
 image = { version = "0.25", default-features = false, features = ["png"] }
 serde_json = "1"
+
+[patch.crates-io]
+muda = { git = "https://github.com/dfaust/muda", branch = "ksni" }

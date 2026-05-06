@@ -106,10 +106,6 @@ impl TrayIcon {
     pub fn rect(&self) -> Option<crate::Rect> {
         None
     }
-
-    pub fn app_indicator(&self) -> &AppIndicator {
-        &self.indicator
-    }
 }
 
 impl Drop for TrayIcon {
